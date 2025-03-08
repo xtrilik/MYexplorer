@@ -1,0 +1,34 @@
+// File: .vscode/c_cpp_properties.json
+// Version: 1.0 (Added WebView2 include path to fix IntelliSense error 1696)
+// -------------------------------------------------------------------------
+// This file configures the IntelliSense engine for the C/C++ extension.
+// We specify the compilerPath, standard version, and includePath. The key
+// is to add the directory containing WebView2.h so IntelliSense can see it.
+//
+// Adjust any paths to match your environment (Windows Kits, etc.)
+// -------------------------------------------------------------------------
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            // Use your MSVC compiler path or any valid compiler
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.xx.xxxxx/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+            "includePath": [
+                "${workspaceFolder}",
+                // Path to your WebView2 headers:
+                "C:/Users/sean.pimental/Downloads/microsoft.web.webview2.1.0.2957.106/build/native/include",
+                // Optionally add Windows Kits if needed:
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/shared"
+            ],
+            "defines": [
+                "UNICODE",
+                "_UNICODE"
+            ]
+        }
+    ],
+    "version": 4
+}

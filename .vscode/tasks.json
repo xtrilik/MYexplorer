@@ -1,0 +1,47 @@
+// File: tasks.json
+// Version: 1.2 (Added advapi32.lib to fix registry & eventing unresolved externals)
+// -------------------------------------------------------------------------
+// This file configures your VS Code build task to compile and link MYexplorer
+// with MSVC, including the libraries needed for:
+//
+//   - ShellExecuteExW  (shell32.lib)
+//   - CreateCoreWebView2EnvironmentWithOptions (WebView2LoaderStatic.lib)
+//   - Registry & ETW APIs (advapi32.lib)
+//
+// Usage:
+//  1) Place this file in .vscode/tasks.json
+//  2) Press Ctrl+Shift+B in VS Code
+//  3) Select "Build MYexplorer (MSVC)" if prompted
+//  4) The app will compile and link, producing MYexplorer.exe
+// -------------------------------------------------------------------------
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build MYexplorer (MSVC)",
+      "type": "shell",
+      "command": "cmd",
+      "args": [
+        "/c",
+        // Entire command chain in one string:
+        // 1) call vcvars64.bat to set up MSVC environment
+        // 2) run cl.exe with all .cpp files
+        // 3) link with the required libraries, including advapi32.lib
+        "call \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat\" && cl.exe /std:c++17 /EHsc /DUNICODE /D_UNICODE /I. /IC:\\Users\\sean.pimental\\Downloads\\microsoft.web.webview2.1.0.2957.106\\build\\native\\include main.cpp MainWindow.cpp BrowserPanel.cpp WindowMonitor.cpp FingerprintUtils.cpp WindowUtils.cpp FileUtils.cpp /link user32.lib gdi32.lib comctl32.lib ole32.lib shlwapi.lib psapi.lib gdiplus.lib shell32.lib advapi32.lib \"C:\\Users\\sean.pimental\\Downloads\\microsoft.web.webview2.1.0.2957.106\\build\\native\\x64\\WebView2LoaderStatic.lib\" /OUT:MYexplorer.exe"
+      ],
+      // Force cmd.exe as the shell to avoid quoting issues with PowerShell
+      "options": {
+        "shell": {
+          "executable": "cmd.exe",
+          "args": [ "/c" ]
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      // Use MSVC error parser
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

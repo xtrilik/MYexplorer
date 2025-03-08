@@ -1,0 +1,7 @@
+# Ignore WebView2 cache and logs
+MYexplorer.exe.WebView2/
+# Ignore compiled C++ executables and object files
+*.exe
+*.obj
+*.dll
+*.pdb
