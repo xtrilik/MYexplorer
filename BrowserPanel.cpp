@@ -21,6 +21,7 @@
 #include <string>
 #include <sstream>
 #include <windows.h>
+#include <cstdio> // [TEST] Simple line to demonstrate patch
 #include <objbase.h>
 #include <shellapi.h>
 #include <commctrl.h>
